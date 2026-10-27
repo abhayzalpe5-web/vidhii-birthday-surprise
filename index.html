@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday, My Vidhii! ❤️ | A Magical Surprise</title>
+  <meta name="description"
+    content="A magical, cinematic, and deeply personal birthday surprise website crafted with all my love for Vidhii.">
+
+  <!-- Google Fonts Preconnect & Stylesheets -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- Background Canvas for Stars, Glowing Hearts & Ambient Particles -->
+  <canvas id="bg-canvas"></canvas>
+  <canvas id="confetti-canvas"></canvas>
+
+  <!-- Ambient Glowing Blurred Orbs -->
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
+  <div class="ambient-glow glow-3"></div>
+
+  <!-- Audio Element (Target: assets/happy-birthday.mp3; fallback: Web Audio Celesta Synthesizer) -->
+  <audio id="birthday-audio" preload="auto">
+    <source src="assets/happy-birthday.mp3" type="audio/mpeg">
+    <source src="happy-birthday.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Floating Navigation Bar (Appears after surprise is unlocked) -->
+  <nav class="floating-nav" id="floating-nav" aria-label="Surprise Navigation">
+    <ul class="nav-links">
+      <li><a href="#countdown-landing" class="active">Surprise 🎁</a></li>
+      <li><a href="#celebration-section">Cake 🎂</a></li>
+      <li><a href="#poetry-section">Poetry 📜</a></li>
+      <li><a href="#gallery-section">Memories 📷</a></li>
+      <li><a href="#reasons-section">For You 💕</a></li>
+      <li><a href="#finale-section">Finale ✨</a></li>
+    </ul>
+  </nav>
+
+  <!-- Floating Music Player Widget -->
+  <div class="music-player-widget" id="music-player-widget" role="region" aria-label="Music Player">
+    <button class="music-btn" id="music-toggle-btn" title="Play or Pause Birthday Song" aria-label="Toggle Music">
+      ▶️
+    </button>
+    <div class="music-info">
+      <div class="music-title">
+        <span>Birthday Song</span>
+        <div class="equalizer-bars">
+          <div class="eq-bar"></div>
+          <div class="eq-bar"></div>
+          <div class="eq-bar"></div>
+          <div class="eq-bar"></div>
+        </div>
+      </div>
+      <span class="music-sub" id="music-sub-text">Happy Birthday Melody 🎵</span>
+    </div>
+  </div>
+
+  <!-- Main Page Container -->
+  <div class="page-container">
+
+    <!-- ==========================================================================
+         SECTION 1: HERO / COUNTDOWN LANDING SCREEN
+         ========================================================================== -->
+    <section class="hero-countdown-section" id="countdown-landing">
+
+      <!-- Cinematic Opening Teaser -->
+      <div class="opening-cinematic">
+        <p class="cinematic-line-1">For Someone Very Special...</p>
+        <h1 class="cinematic-line-2">For My Vidhii ❤️</h1>
+      </div>
+
+      <!-- Main Countdown Glass Card -->
+      <div class="countdown-card">
+        <div class="romantic-tag">
+          <span>✨</span>
+          <span>A Special Day Approaches</span>
+          <span>✨</span>
+        </div>
+
+        <h2 class="countdown-message">
+          Something magical is waiting for you, <span>Vidhii ❤️</span>
+        </h2>
+
+        <!-- Countdown Timer Digits -->
+        <div class="countdown-grid" role="timer" aria-live="polite">
+          <div class="countdown-box">
+            <span class="countdown-num" id="countdown-days">00</span>
+            <span class="countdown-label">Days</span>
+          </div>
+          <div class="countdown-box">
+            <span class="countdown-num" id="countdown-hours">00</span>
+            <span class="countdown-label">Hours</span>
+          </div>
+          <div class="countdown-box">
+            <span class="countdown-num" id="countdown-mins">00</span>
+            <span class="countdown-label">Minutes</span>
+          </div>
+          <div class="countdown-box">
+            <span class="countdown-num" id="countdown-secs">00</span>
+            <span class="countdown-label">Seconds</span>
+          </div>
+        </div>
+
+        <!-- Target Date Info Badge -->
+        <div class="target-date-badge">
+          <span>⏳ Target:</span>
+          <strong>28 October 2026, 12:00 AM IST (Midnight)</strong>
+        </div>
+
+        <!-- Surprise Unlock Button Area -->
+        <div class="surprise-action-area">
+          <button class="surprise-btn locked" id="surprise-btn" disabled>
+            <span class="lock-icon">🔒</span>
+            <span class="btn-text">Surprise Unlocks On Birthday</span>
+          </button>
+
+          <p class="lock-status-caption" id="surprise-status-text">
+            Surprise automatically unlocks on 28 October 2026, 12:00 AM IST ❤️
+          </p>
+
+          <!-- Testing / Preview Mode Switch (Allows instant preview before the date) -->
+          <button class="dev-test-toggle" id="test-mode-btn"
+            title="Toggle test preview to experience the surprise right now">
+            ✨ Preview Unlock (Testing Mode)
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         MAIN CELEBRATION CONTAINER (Smoothly Revealed on Surprise Unlock)
+         ========================================================================== -->
+    <div id="main-celebration-content">
+
+      <!-- ==========================================================================
+           SECTION 2: BIRTHDAY CAKE & CELEBRATION
+           ========================================================================== -->
+      <section class="section-wrapper cake-celebration-section" id="celebration-section">
+
+        <div class="celebration-grand-hero">
+          <div class="romantic-tag">
+            <span>🎂</span>
+            <span>Happy Birthday</span>
+            <span>🎂</span>
+          </div>
+          <h2 class="grand-birthday-title">Happy Birthday, My Vidhii! 🎂❤️</h2>
+          <p class="grand-birthday-subtitle">
+            "May your world be filled with endless smiles, pure happiness, and every dream your beautiful heart
+            desires."
+          </p>
+        </div>
+
+        <!-- Interactive 3D Layered Birthday Cake -->
+        <div class="cake-stage-container">
+          <div class="cake-wrapper">
+            <!-- Candle Row with Interactive Flames -->
+            <div class="candles-row">
+              <div class="candle" title="Tap candle to blow out!">
+                <div class="flame"></div>
+              </div>
+              <div class="candle" title="Tap candle to blow out!">
+                <div class="flame"></div>
+              </div>
+              <div class="candle" title="Tap candle to blow out!">
+                <div class="flame"></div>
+              </div>
+            </div>
+
+            <!-- Cake Tier Top -->
+            <div class="cake-tier-top">
+              <div class="frosting-drips">
+                <div class="drip"></div>
+                <div class="drip"></div>
+                <div class="drip"></div>
+                <div class="drip"></div>
+                <div class="drip"></div>
+              </div>
+            </div>
+
+            <!-- Cake Tier Bottom -->
+            <div class="cake-tier-bottom">
+              <div class="frosting-drips">
+                <div class="drip"></div>
+                <div class="drip"></div>
+                <div class="drip"></div>
+                <div class="drip"></div>
+                <div class="drip"></div>
+                <div class="drip"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Cake Plate -->
+          <div class="cake-plate"></div>
+        </div>
+
+        <p class="wish-instructions">
+          <span>🕯️</span> Tap any candle to blow it out, then make your secret wish! <span>✨</span>
+        </p>
+
+        <!-- Make a Wish Button -->
+        <button class="make-wish-btn" id="make-wish-btn">
+          <span>✨</span>
+          <span>Make a Wish</span>
+          <span>✨</span>
+        </button>
+
+        <!-- Final Toast Banner -->
+        <div class="celebration-toast-banner" id="cake-toast" style="display: none;">
+          <h3>Today is all about you, Vidhii ❤️</h3>
+          <p>May all your wishes cross the stars and find their way home to you in the most beautiful ways imaginable.
+          </p>
+        </div>
+      </section>
+
+      <!-- ==========================================================================
+           SECTION 3: SPECIAL BIRTHDAY POETRY FOR VIDHII ❤️
+           ========================================================================== -->
+      <section class="section-wrapper poetry-section" id="poetry-section">
+        <div class="poetry-letter-card">
+          <div class="romantic-tag"
+            style="display: flex; justify-content: center; margin: 0 auto 16px auto; width: fit-content;">
+            <span>📜</span>
+            <span>Words From The Heart</span>
+            <span>📜</span>
+          </div>
+
+          <h2 class="poetry-header-title">For My Vidhii ❤️</h2>
+
+          <!-- Typewriter Sequential Poem Body -->
+          <div class="typewriter-poem-body" id="poem-container">
+            <p class="poem-line">Chaand se roshan teri har ek raat ho,</p>
+            <p class="poem-line stanza-break">Teri har khushi mere liye ek khaas baat ho.</p>
+
+            <p class="poem-line">Teri muskaan kabhi kam na ho,</p>
+            <p class="poem-line stanza-break">Tere sapno ka aasmaan kabhi kam na ho.</p>
+
+            <p class="poem-line">Har janamdin laaye khushiyon ki saugaat,</p>
+            <p class="poem-line stanza-break">Tere chehre par rahe hamesha muskaan ki barsaat.</p>
+
+            <p class="poem-line">Dua hai meri, tera har sapna sach ho jaaye,</p>
+            <p class="poem-line stanza-break">Aur zindagi ka har khoobsurat pal tere naam ho jaaye.</p>
+
+            <p class="poem-line highlight">Happy Birthday, Vidhii ❤️</p>
+            <p class="poem-line closing-wish">Tu hamesha khush rahe, bas yahi meri dua hai.</p>
+          </div>
+
+          <!-- Highlighted Romantic Quote -->
+          <div class="special-quote-box">
+            <p class="special-quote-text">
+              "Some people make ordinary moments feel magical. For me, that person is you, Vidhii. ❤️"
+            </p>
+          </div>
+
+          <!-- Action Button for Second Secret Message -->
+          <div class="poetry-action-wrapper">
+            <button class="read-more-btn" id="read-more-btn">
+              <span>💌</span>
+              <span>Read One More Message</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================================================
+           SECTION 4: WALL OF PRECIOUS MEMORIES (10 Bespoke Frames)
+           ========================================================================== -->
+      <section class="section-wrapper gallery-section" id="gallery-section">
+        <div class="romantic-tag" style="display: table; margin: 0 auto 16px auto;">
+          <span>📷</span>
+          <span>Gallery of Moments</span>
+          <span>📷</span>
+        </div>
+
+        <h2 class="section-title">A Wall of Precious Memories</h2>
+        <p class="section-subtitle">
+          Every photograph tells a story of your beauty, your warmth, and the joy you bring into the world. Click any
+          memory to open it in full view.
+        </p>
+
+        <!-- Gallery Grid (Dynamically Populated by script.js with all 10 images) -->
+        <div class="gallery-grid" id="gallery-grid">
+          <!-- Fallback static placeholder structure for SSR/pre-render -->
+        </div>
+      </section>
+
+      <!-- ==========================================================================
+           SECTION 5: SWEET REASONS VIDHII IS SPECIAL
+           ========================================================================== -->
+      <section class="section-wrapper reasons-section" id="reasons-section">
+        <div class="romantic-tag" style="display: table; margin: 0 auto 16px auto;">
+          <span>🌸</span>
+          <span>Why You Are Incredible</span>
+          <span>🌸</span>
+        </div>
+
+        <h2 class="section-title">Sweet Reasons You Are So Special</h2>
+        <p class="section-subtitle">
+          Just a few of the countless little things that make you completely unforgettable.
+        </p>
+
+        <div class="reasons-grid">
+          <div class="reason-card">
+            <span class="reason-icon">✨</span>
+            <h3>Your Radiant Smile</h3>
+            <p>It has an effortless way of brightening even the gloomiest day. When you smile, the whole world feels a
+              little softer.</p>
+          </div>
+
+          <div class="reason-card">
+            <span class="reason-icon">🌸</span>
+            <h3>Your Gentle Grace</h3>
+            <p>From the way you speak to how effortlessly you carry yourself with poise and warmth, your grace is truly
+              timeless.</p>
+          </div>
+
+          <div class="reason-card">
+            <span class="reason-icon">💫</span>
+            <h3>Your Caring Heart</h3>
+            <p>You have a genuine kindness that touches everyone around you. Having you in life is a rare and precious
+              blessing.</p>
+          </div>
+
+          <div class="reason-card">
+            <span class="reason-icon">🌙</span>
+            <h3>The Magic You Bring</h3>
+            <p>You make ordinary moments feel like poetry. Being around you brings a calm that nothing else can
+              replicate.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================================================
+           SECTION 6: FINALE & GRAND BIRTHDAY WISH
+           ========================================================================== -->
+      <section class="section-wrapper finale-section" id="finale-section">
+        <div class="finale-card">
+          <div class="finale-hearts">❤️ ✨ 🎂 ✨ ❤️</div>
+          <h2 class="finale-tagline">Today is all about you, Vidhii ❤️</h2>
+          <p class="finale-message">
+            Celebrate every single second of your day knowing how cherished, loved, and deeply appreciated you are. May
+            the coming year bring you peace, boundless joy, good health, and success beyond measure.
+          </p>
+          <div class="romantic-tag" style="display: inline-flex;">
+            <span>🌹 Always Keep Smiling 🌹</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer>
+        <p>Crafted with endless love & adoration, especially for Vidhii ❤️</p>
+        <p style="margin-top: 6px; font-size: 0.75rem; opacity: 0.6;">
+          Made for October 28, 2026 • A Timeless Birthday Celebration
+        </p>
+      </footer>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       MODAL 1: LIGHTBOX FOR PHOTOGRAPHS
+       ========================================================================== -->
+  <div class="lightbox-modal" id="lightbox-modal" role="dialog" aria-modal="true" aria-label="Photo Lightbox">
+    <div class="lightbox-content">
+      <button class="lightbox-close-btn" id="lightbox-close" aria-label="Close Lightbox">✕</button>
+      <button class="lightbox-nav-btn lightbox-prev" id="lightbox-prev" aria-label="Previous Photo">‹</button>
+      <button class="lightbox-nav-btn lightbox-next" id="lightbox-next" aria-label="Next Photo">›</button>
+
+      <div class="lightbox-img-wrapper">
+        <img src="" alt="Vidhii Memory" class="lightbox-img" id="lightbox-img">
+      </div>
+
+      <div class="lightbox-caption-bar">
+        <p class="lightbox-caption-text" id="lightbox-caption"></p>
+        <span class="lightbox-counter" id="lightbox-counter"></span>
+        <br>
+        <button class="lightbox-rotate-btn" id="lightbox-rotate" title="Rotate photo orientation">
+          🔄 Rotate Orientation
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       MODAL 2: HEARTFELT LETTER MODAL
+       ========================================================================== -->
+  <div class="letter-modal" id="letter-modal" role="dialog" aria-modal="true" aria-label="Secret Letter">
+    <div class="letter-paper">
+      <button class="lightbox-close-btn" id="close-letter-btn" aria-label="Close Letter"
+        style="top: 20px; right: 20px;">✕</button>
+
+      <h2>A Letter Just For You 💌</h2>
+
+      <div class="letter-content">
+        <p>Dear Vidhii,</p>
+        <p>
+          On your special birthday, I wanted to take a quiet moment to remind you of just how extraordinary you are.
+          Life moves so fast, but moments spent with you or even thinking of your smile have a way of making time stand
+          still.
+        </p>
+        <p>
+          Your laughter has this gentle warmth that can soften any tough day, and your genuine heart is a treasure that
+          anyone would be lucky to know. Thank you for simply being you—unapologetically kind, graceful, and full of
+          that quiet magic that makes everything around you brighter.
+        </p>
+        <p>
+          As you turn another page into this new year of your life, my deepest wish for you is that you are met with
+          immense peace, courage to chase every single dream in your heart, laughter that makes your eyes crinkle, and
+          happiness in every corner you turn.
+        </p>
+        <p>
+          Never forget how truly valued and special you are. Today, tomorrow, and in all the years ahead.
+        </p>
+      </div>
+
+      <div class="letter-signature">
+        Happy Birthday, Vidhii ❤️<br>
+        <span style="font-size: 1.4rem; color: var(--soft-rose);">Always wishing the best for you.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Master JavaScript File -->
+  <script src="script.js"></script>
+</body>
+
+</html>
